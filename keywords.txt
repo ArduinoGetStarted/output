@@ -1,0 +1,26 @@
+#######################################
+# Syntax Coloring Map For Output
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Output	KEYWORD1
+output	KEYWORD1
+led	KEYWORD1
+relay	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+high	KEYWORD2
+low	KEYWORD2
+toggle	KEYWORD2
+blink	KEYWORD2
+getState	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
