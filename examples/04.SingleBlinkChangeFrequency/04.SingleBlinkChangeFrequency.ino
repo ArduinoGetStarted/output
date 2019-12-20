@@ -12,10 +12,10 @@
  * + without using delay() function. This is a non-blocking example 
  */
 
-#include <Output.h> // ezOutput library
+#include <ezOutput.h> // ezOutput library
 
 const int BUTTON_PIN = 7;
-Output led(9);  // create Output object that attach to pin 9;
+ezOutput led(9);  // create ezOutput object that attach to pin 9;
 
 void setup() {
   pinMode(BUTTON_PIN, INPUT_PULLUP);
@@ -27,7 +27,7 @@ void loop() {
   int buttonState = digitalRead(BUTTON_PIN);
 
   if(buttonState == HIGH) // button is not pressed
-	  led.blink(500, 500); // 500 milliseconds ON, 500 milliseconds OFF
+    led.blink(500, 500); // 500 milliseconds ON, 500 milliseconds OFF
   else // button is pressed
-	  led.blink(200, 200); // 200 milliseconds ON, 200 milliseconds OFF
+    led.blink(200, 200); // 200 milliseconds ON, 200 milliseconds OFF
 }

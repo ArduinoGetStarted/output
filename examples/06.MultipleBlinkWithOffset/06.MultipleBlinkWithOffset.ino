@@ -11,11 +11,11 @@
  * + without using delay() function. This is a non-blocking example 
  */
 
-#include <Output.h> // ezOutput library
+#include <ezOutput.h> // ezOutput library
 
-Output led1(7);  // create Output object that attach to pin 7;
-Output led2(8);  // create Output object that attach to pin 8;
-Output led3(9);  // create Output object that attach to pin 9;
+ezOutput led1(7);  // create ezOutput object that attach to pin 7;
+ezOutput led2(8);  // create ezOutput object that attach to pin 8;
+ezOutput led3(9);  // create ezOutput object that attach to pin 9;
 
 void setup() {
   led1.blink(500, 250);       // 500 milliseconds ON, 250 milliseconds OFF. start immediately

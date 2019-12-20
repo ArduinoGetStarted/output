@@ -1,12 +1,12 @@
 #######################################
-# Syntax Coloring Map For Output
+# Syntax Coloring Map For ezOutput
 #######################################
 
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
 
-Output	KEYWORD1
+ezOutput	KEYWORD1
 output	KEYWORD1
 led	KEYWORD1
 relay	KEYWORD1

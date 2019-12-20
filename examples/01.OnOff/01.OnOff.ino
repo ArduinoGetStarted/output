@@ -8,10 +8,10 @@
  * This example turn ON/OFF led according to state of button.
  */
 
-#include <Output.h> // ezOutput library
+#include <ezOutput.h> // ezOutput library
 
 const int BUTTON_PIN = 7;
-Output led(9);  // create Output object that attach to pin 9;
+ezOutput led(9);  // create ezOutput object that attach to pin 9;
 
 void setup() {
   Serial.begin(9600);
@@ -22,9 +22,9 @@ void loop() {
   int buttonState = digitalRead(BUTTON_PIN);
 
   if(buttonState == HIGH)
-	  led.high();
+    led.high();
   else
-	  led.low();
+    led.low();
 
   Serial.println(led.getState());
 }

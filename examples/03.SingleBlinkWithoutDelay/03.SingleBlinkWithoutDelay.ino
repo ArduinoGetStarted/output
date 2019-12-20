@@ -8,9 +8,9 @@
  * This example blinks an LED without using delay() function. This is a non-blocking example 
  */
 
-#include <Output.h> // ezOutput library
+#include <ezOutput.h> // ezOutput library
 
-Output led(9);  // create Output object that attach to pin 9;
+ezOutput led(9);  // create ezOutput object that attach to pin 9;
 
 void setup() {
   led.blink(500, 250); // 500 milliseconds ON, 250 milliseconds OFF
