@@ -48,6 +48,7 @@ class ezOutput
 		unsigned long _highTime;
 		unsigned long _lowTime;
 		unsigned long _startTime;
+		unsigned long _blinkTimes;
 		unsigned long _lastBlinkTime; // the last time the output pin was blinked
 
 	public:
@@ -57,6 +58,7 @@ class ezOutput
 		void toggle(void);
 		void blink(unsigned long lowTime, unsigned long highTime);
 		void blink(unsigned long lowTime, unsigned long highTime, unsigned long startTime);
+		void blink(unsigned long lowTime, unsigned long highTime, unsigned long startTime, long blinkTimes);
 		int getState(void);
 		void loop(void);
 };

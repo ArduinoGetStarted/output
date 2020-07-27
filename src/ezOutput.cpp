@@ -38,6 +38,7 @@ ezOutput::ezOutput(int pin) {
 
 	_highTime = 0;
 	_lowTime  = 0;
+	_blinkTimes  = -1;
 	_lastBlinkTime = 0; 
 
 	pinMode(_outputPin, OUTPUT);
@@ -61,10 +62,11 @@ void ezOutput::toggle(void) {
 	digitalWrite(_outputPin, _outputState);
 }
 
-void ezOutput::blink(unsigned long lowTime, unsigned long highTime, unsigned long startTime) {
-	_highTime  = highTime;
-	_lowTime   = lowTime;
-	_startTime = startTime;
+void ezOutput::blink(unsigned long lowTime, unsigned long highTime, unsigned long startTime, long blinkTimes) {
+	_highTime   = highTime;
+	_lowTime    = lowTime;
+	_startTime  = startTime;
+	_blinkTimes = blinkTimes;
 
 	if(_blinkState == BLINK_STATE_DISABLE) {
 		_blinkState = BLINK_STATE_DELAY;
@@ -72,8 +74,12 @@ void ezOutput::blink(unsigned long lowTime, unsigned long highTime, unsigned lon
 	}
 }
 
+void ezOutput::blink(unsigned long lowTime, unsigned long highTime, unsigned long startTime) {
+	blink(lowTime, highTime, startTime, -1);
+}
+
 void ezOutput::blink(unsigned long lowTime, unsigned long highTime) {
-	blink(lowTime, highTime, 0);
+	blink(lowTime, highTime, 0, -1);
 }
 
 int ezOutput::getState(void) {
@@ -82,6 +88,9 @@ int ezOutput::getState(void) {
 
 void ezOutput::loop(void) {
 	bool isBlink = false;
+
+	if(_blinkTimes == 0)
+		_blinkState = BLINK_STATE_DISABLE;
 
 	switch(_blinkState) {
 		case BLINK_STATE_DISABLE:
@@ -112,6 +121,9 @@ void ezOutput::loop(void) {
 		_outputState = (_outputState == LOW) ? HIGH : LOW;
 		digitalWrite(_outputPin, _outputState);
 		_lastBlinkTime = millis();
+		
+		if(_blinkTimes > 0)
+			_blinkTimes--;
 	}
 }
 

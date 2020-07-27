@@ -20,6 +20,7 @@ Available Examples
 * 04.SingleBlinkChangeFrequency
 * 05.MultipleBlinkWithoutDelay
 * 06.MultipleBlinkWithOffset
+* 07.BlinkInPeriod
 
 How To Install the Library
 ----------------------------
