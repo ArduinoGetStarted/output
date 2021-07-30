@@ -56,6 +56,7 @@ class ezOutput
 		void high(void);
 		void low(void);
 		void toggle(void);
+		void toggle(unsigned long startTime);
 		void blink(unsigned long lowTime, unsigned long highTime);
 		void blink(unsigned long lowTime, unsigned long highTime, unsigned long startTime);
 		void blink(unsigned long lowTime, unsigned long highTime, unsigned long startTime, long blinkTimes);

@@ -62,6 +62,15 @@ void ezOutput::toggle(void) {
 	digitalWrite(_outputPin, _outputState);
 }
 
+void ezOutput::toggle(unsigned long startTime) {
+	_highTime   = 0;
+	_lowTime    = 0;
+	_startTime  = startTime;
+	_blinkTimes = 1;
+	_blinkState = BLINK_STATE_DELAY;
+	_lastBlinkTime = millis();
+}
+
 void ezOutput::blink(unsigned long lowTime, unsigned long highTime, unsigned long startTime, long blinkTimes) {
 	_highTime   = highTime;
 	_lowTime    = lowTime;
