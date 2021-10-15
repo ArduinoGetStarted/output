@@ -62,19 +62,32 @@ void ezOutput::toggle(void) {
 	digitalWrite(_outputPin, _outputState);
 }
 
-void ezOutput::toggle(unsigned long startTime) {
+void ezOutput::toggle(unsigned long delayTime) {
 	_highTime   = 0;
 	_lowTime    = 0;
-	_startTime  = startTime;
+	_startTime  = delayTime;
 	_blinkTimes = 1;
 	_blinkState = BLINK_STATE_DELAY;
 	_lastBlinkTime = millis();
 }
 
-void ezOutput::blink(unsigned long lowTime, unsigned long highTime, unsigned long startTime, long blinkTimes) {
+
+
+void ezOutput::pulse(unsigned long pulseTime) {
+	pulse(pulseTime, 0);
+}
+void ezOutput::pulse(unsigned long pulseTime, unsigned long delayTime) {
+	_blinkState = BLINK_STATE_DISABLE;
+	if(_outputState == LOW)
+		blink(0, pulseTime, delayTime, 2);
+	else
+		blink(pulseTime, 0, delayTime, 2);
+}
+
+void ezOutput::blink(unsigned long lowTime, unsigned long highTime, unsigned long delayTime, long blinkTimes) {
 	_highTime   = highTime;
 	_lowTime    = lowTime;
-	_startTime  = startTime;
+	_startTime  = delayTime;
 	_blinkTimes = blinkTimes;
 
 	if(_blinkState == BLINK_STATE_DISABLE) {
@@ -83,8 +96,8 @@ void ezOutput::blink(unsigned long lowTime, unsigned long highTime, unsigned lon
 	}
 }
 
-void ezOutput::blink(unsigned long lowTime, unsigned long highTime, unsigned long startTime) {
-	blink(lowTime, highTime, startTime, -1);
+void ezOutput::blink(unsigned long lowTime, unsigned long highTime, unsigned long delayTime) {
+	blink(lowTime, highTime, delayTime, -1);
 }
 
 void ezOutput::blink(unsigned long lowTime, unsigned long highTime) {

@@ -56,10 +56,15 @@ class ezOutput
 		void high(void);
 		void low(void);
 		void toggle(void);
-		void toggle(unsigned long startTime);
+		void toggle(unsigned long delayTime);
+
+		void pulse(unsigned long pulseTime);
+		void pulse(unsigned long pulseTime, unsigned long delayTime);
+
 		void blink(unsigned long lowTime, unsigned long highTime);
-		void blink(unsigned long lowTime, unsigned long highTime, unsigned long startTime);
-		void blink(unsigned long lowTime, unsigned long highTime, unsigned long startTime, long blinkTimes);
+		void blink(unsigned long lowTime, unsigned long highTime, unsigned long delayTime);
+
+		void blink(unsigned long lowTime, unsigned long highTime, unsigned long delayTime, long blinkTimes);
 		int getState(void);
 		void loop(void);
 };

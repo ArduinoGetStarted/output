@@ -6,17 +6,16 @@
  * Tutorial page: https://arduinogetstarted.com/tutorials/arduino-output-library
  *
  * This example blinks LED:
- * + blink in 10 seconds and then turn off
+ * + blink 10 times (5 times OFF->ON, 5 times ON->OFF, interleavedly)
  * + without using delay() function. This is a non-blocking example 
  */
 
 #include <ezOutput.h> // ezOutput library
 
-ezOutput led(7);  // create ezOutput object that attach to pin 7;
-
+ezOutput led(9);  // create ezOutput object that attach to pin 9;
 
 void setup() {
-  led.blink(200, 200, 0, 10000); // 200 milliseconds ON, 200 milliseconds OFF, start immidiately, blink during 10000 milliseconds
+  led.blink(250, 500, 0, 10); // 500 milliseconds ON, 250 milliseconds OFF, start immidiately, blink 10 times (5 times OFF->ON, 5 times ON->OFF, interleavedly)
 }
 
 void loop() {

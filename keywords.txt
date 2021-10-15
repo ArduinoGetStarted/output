@@ -18,6 +18,7 @@ relay	KEYWORD1
 high	KEYWORD2
 low	KEYWORD2
 toggle	KEYWORD2
+pulse	KEYWORD2
 blink	KEYWORD2
 getState	KEYWORD2
 
