@@ -19,10 +19,8 @@ Available Functions
 * void low(void)
 * void toggle(void)
 * void toggle(unsigned long delayTime)
-
 * void pulse(unsigned long pulseTime)
 * void pulse(unsigned long pulseTime, unsigned long delayTime)
-
 * void blink(unsigned long lowTime, unsigned long highTime)
 * void blink(unsigned long lowTime, unsigned long highTime, unsigned long delayTime)
 * void blink(unsigned long lowTime, unsigned long highTime, unsigned long delayTime, long blinkTimes)
