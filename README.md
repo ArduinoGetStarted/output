@@ -10,7 +10,25 @@ Features
 * Supports blink without delay
 * All functions are non-blocking
 * Easy to use with multiple output pins
-* Support time offset in blink multiple output pins 
+* Support time offset in blink multiple output pins
+
+Available Functions
+----------------------------
+* ezOutput(int pin)
+* void high(void)
+* void low(void)
+* void toggle(void)
+* void toggle(unsigned long delayTime)
+
+* void pulse(unsigned long pulseTime)
+* void pulse(unsigned long pulseTime, unsigned long delayTime)
+
+* void blink(unsigned long lowTime, unsigned long highTime)
+* void blink(unsigned long lowTime, unsigned long highTime, unsigned long delayTime)
+* void blink(unsigned long lowTime, unsigned long highTime, unsigned long delayTime, long blinkTimes)
+* int getState(void)
+* void loop(void)
+ 
 
 Available Examples
 ----------------------------
