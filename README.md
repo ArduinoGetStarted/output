@@ -1,5 +1,5 @@
 ## Output Library for Arduino - ezOutput
-This library is designed for Arduino, ESP32, ESP8266... to control the states of digital output pins (HIGH, LOW, TOGGLE, PULSE, BLINK_WITHOUT_DELAY). It is easy to use with multiple output pins to control multiple LED, relay... It is designed for not only beginners but also experienced users.
+This library is designed for Arduino, ESP32, ESP8266... to control the states of digital output pins (HIGH, LOW, TOGGLE, PULSE, BLINK_WITHOUT_DELAY). It is easy to use with multiple output pins to control multiple LED, relay... It is designed for not only beginners but also experienced users. The *digitalWrite* and *pinMode* functions can be overwritten to use ezOutput on top of other libraries like [Shifty](https://github.com/johnnyb/Shifty).
 
 **ezOutput** stands for **easy output**, which mean that the library is easy to use.
 
@@ -8,6 +8,7 @@ Features
 * Support HIGH, LOW, PULSE and TOGGLE
 * Support get state of output pin
 * Supports blink without delay
+* Functions for digitalWrite and pinMode are overwritable
 * All functions are non-blocking
 * Easy to use with multiple output pins
 * Support time offset in blink multiple output pins
@@ -15,6 +16,7 @@ Features
 Available Functions
 ----------------------------
 * ezOutput(int pin)
+* ezOutput(int pin, void (*funptr_digitalWrite)(uint8_t, uint8_t), void (*funptr_pinMode)(uint8_t, uint8_t) = nullptr)
 * void high(void)
 * void low(void)
 * void toggle(void)
