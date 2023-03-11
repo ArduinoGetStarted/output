@@ -31,7 +31,12 @@
 
 #include <ezOutput.h>
 
-ezOutput::ezOutput(int pin) {
+ezOutput::ezOutput(int pin) : ezOutput::ezOutput(pin, digitalWrite, pinMode) {
+}
+
+ezOutput::ezOutput(int pin, void (*funptr_digitalWrite)(uint8_t, uint8_t), void (*funptr_pinMode)(uint8_t, uint8_t)) {
+	_funptr_digitalWrite = funptr_digitalWrite;
+	_funptr_pinMode = funptr_pinMode;
 	_outputPin = pin;
 	_outputState = LOW;
 	_blinkState = BLINK_STATE_DISABLE;
@@ -41,25 +46,28 @@ ezOutput::ezOutput(int pin) {
 	_blinkTimes  = -1;
 	_lastBlinkTime = 0; 
 
-	pinMode(_outputPin, OUTPUT);
+	if (nullptr != _funptr_pinMode)
+	{
+		_funptr_pinMode(_outputPin, OUTPUT);
+	}
 }
 
 void ezOutput::high(void){
 	_blinkState = BLINK_STATE_DISABLE;
 	_outputState = HIGH;
-	digitalWrite(_outputPin, _outputState);
+	_funptr_digitalWrite(_outputPin, _outputState);
 }
 
 void ezOutput::low(void){
 	_blinkState = BLINK_STATE_DISABLE;
 	_outputState = LOW;
-	digitalWrite(_outputPin, _outputState);
+	_funptr_digitalWrite(_outputPin, _outputState);
 }
 
 void ezOutput::toggle(void) {
 	_blinkState = BLINK_STATE_DISABLE;
 	_outputState = (_outputState == LOW) ? HIGH : LOW;
-	digitalWrite(_outputPin, _outputState);
+	_funptr_digitalWrite(_outputPin, _outputState);
 }
 
 void ezOutput::toggle(unsigned long delayTime) {
@@ -141,7 +149,7 @@ void ezOutput::loop(void) {
 
 	if(isBlink) {
 		_outputState = (_outputState == LOW) ? HIGH : LOW;
-		digitalWrite(_outputPin, _outputState);
+		_funptr_digitalWrite(_outputPin, _outputState);
 		_lastBlinkTime = millis();
 		
 		if(_blinkTimes > 0)

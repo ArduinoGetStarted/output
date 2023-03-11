@@ -50,9 +50,25 @@ class ezOutput
 		unsigned long _startTime;
 		unsigned long _blinkTimes;
 		unsigned long _lastBlinkTime; // the last time the output pin was blinked
+		void (* _funptr_digitalWrite)(uint8_t, uint8_t); //function pointer to digitalWrite function
+		void (* _funptr_pinMode)(uint8_t, uint8_t); //function pointer to pinMode function
 
 	public:
+		/**
+		 * @brief Construct a new ez Output object
+		 * 
+		 * @param pin The IO pin number to use
+		 */
 		ezOutput(int pin);
+
+		/**
+		 * @brief Construct a new ez Output object with function pointers to digitalWrite and pinMode
+		 * 
+		 * @param pin The IO pin number to use
+		 * @param funptr_digitalWrite The digitalWrite function to use
+		 * @param funptr_pinMode The pinMode function to use. Default is nullptr (in this case setting the pinMode to OUTPUT has to be done by the user)
+		 */
+		ezOutput(int pin, void (*funptr_digitalWrite)(uint8_t, uint8_t), void (*funptr_pinMode)(uint8_t, uint8_t) = nullptr);
 		void high(void);
 		void low(void);
 		void toggle(void);
